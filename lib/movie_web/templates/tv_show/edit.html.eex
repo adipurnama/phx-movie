@@ -1,0 +1,5 @@
+<h1>Edit Tv show</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.tv_show_path(@conn, :update, @tv_show)) %>
+
+<span><%= link "Back", to: Routes.tv_show_path(@conn, :index) %></span>

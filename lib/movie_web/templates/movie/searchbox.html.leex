@@ -1,0 +1,61 @@
+<div
+  id="<%= if Phoenix.LiveView.connected?(@socket), do: "searchbox-connected", else: "searchbox-not-connected" %>-<%= @search_query %>"
+  class="relative w-full max-w-xs mt-3 text-gray-600 focus-within:text-blue-500 md:mt-0"
+  x-data="{ isOpen: true }"
+  @click.away="isOpen = false"
+  >
+  <!-- Search Box -->
+  <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+      <path class="heroicon-ui" d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/>
+    </svg>
+  </span>
+  <form phx-change="search_keyword" >
+    <input
+      type="text"
+      id="search_query"
+      name="search_query"
+      class="block w-full px-4 py-1 pl-8 text-white bg-gray-800 rounded-full focus:outline-none focus:shadow-outline"
+      phx-debounce="500"
+      autocomplete="off"
+      placeholder="Search movie title"
+      <%# @focus="isOpen = true" %>
+      <%# @keydown.escape.window="isOpen = false" %>
+      value="<%= @search_query %>"
+    >
+  </form>
+  <%= if @loading do %>
+  <div class="absolute top-0 right-0 w-4 h-4 mt-2 ml-2 mr-2 border-2 border-t-2 border-gray-200 rounded-full loader ease-linear"></div>
+  <% end %>
+
+  <!-- Search Result -->
+  <div
+    class="absolute z-50 w-64 mt-4 text-sm bg-gray-800 rounded"
+    x-show="isOpen"
+    >
+  <%= unless String.trim(@search_query) == "" do %>
+    <%= cond do %>
+      <%= @err_msg != "" -> %>
+      <div class="px-3 py-3">
+          Oops. "<%= @err_msg %>". Please try again later.
+      </div>
+      <%= Enum.count(@search_results) == 0 -> %>
+      <div class="px-3 py-3">
+          No results found for "<%= @search_query %>".
+      </div>
+      <% true -> %>
+      <ul>
+        <%= for movie <- @search_results do %>
+        <li class="border-b border-gray-700">
+          <%= link to: Routes.movie_path(MovieWeb.Endpoint, :show, movie.id),
+                   class: "block hover:bg-gray-700 px-3 py-3 flex items-center transition ease-in-out duration-150" do %>
+          <img src="<%= searchbox_poster_image_url(movie) %>" loading="lazy" alt="<%= poster_image_alt(movie) %>" class="w-8" />
+            <span class="ml-4 text-white"><%= movie.title %></span>
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+  </div>
+</div>

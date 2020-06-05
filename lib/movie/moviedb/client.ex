@@ -2,6 +2,7 @@ defmodule Movie.MovieDB.Client do
   @moduledoc """
   HTTP API Client to interact with tmdb API
   """
+  require Logger
 
   @base_url "https://api.themoviedb.org/3"
   @api_key Application.get_env(:movie, :tmdb_api_key)
@@ -25,6 +26,8 @@ defmodule Movie.MovieDB.Client do
   end
 
   defp uri_string(path, params) do
+    Logger.info("API_KEY=#{@api_key}")
+
     "#{@base_url}#{path}"
     |> URI.parse()
     |> Map.put(:query, URI.encode_query([api_key: @api_key] ++ params))

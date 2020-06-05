@@ -1,6 +1,7 @@
 import Config
 
-config :movie, Movie, tmdb_api_key: "${TMDB_API_KEY}"
+config :movie, tmdb_api_key: System.get_env("TMDB_API_KEY")
+# config :movie, tmdb_api_key: "${TMDB_API_KEY}"
 
 config :movie, MovieWeb.Endpoint,
   server: true,

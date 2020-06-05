@@ -38,4 +38,4 @@ npm-debug.log
 .idea/
 .DS_Store
 .elixir_ls/
-.env
+*.env

@@ -1,5 +1,13 @@
 # Movie
 
+## Intro
+
+This project is rewrite of this [excellent PHP Laravel + Livewire tutorial](https://www.youtube.com/watch?v=9OKbmMqsREc&list=PLEhEHUEU3x5pYTjZze3fhYMB4Nl_WOHI4) project.
+Since `laravel livewire` is inspired by `phoenix liveview`, I figured I can
+also follow along using the elixir+phoenix stack.
+
+The live version can be seen [here](http://phx-movie.gigalixirapp.com)
+
 ## Setup
 
 This app requires [themoviedb API](https://themoviedb.org/documentation/api).

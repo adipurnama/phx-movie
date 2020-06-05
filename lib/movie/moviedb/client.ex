@@ -4,7 +4,7 @@ defmodule Movie.MovieDB.Client do
   """
 
   @base_url "https://api.themoviedb.org/3"
-  @api_key System.get_env("TMDB_API_KEY")
+  @api_key Application.get_env(:movie, :tmdb_api_key)
   @default_headers [
     {"content-type", "application/json"}
   ]

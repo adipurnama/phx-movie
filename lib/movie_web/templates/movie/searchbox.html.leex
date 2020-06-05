@@ -39,10 +39,12 @@
       <div class="px-3 py-3">
           Oops. "<%= @err_msg %>". Please try again later.
       </div>
-      <%= Enum.count(@search_results) == 0 -> %>
+
+      <% Enum.count(@search_results) == 0 -> %>
       <div class="px-3 py-3">
           No results found for "<%= @search_query %>".
       </div>
+
       <% true -> %>
       <ul>
         <%= for movie <- @search_results do %>

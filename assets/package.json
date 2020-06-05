@@ -3,19 +3,19 @@
   "description": " ",
   "license": "MIT",
   "scripts": {
-    "deploy": "webpack --mode production",
+    "deploy": "NODE_ENV=production webpack --mode production",
     "watch": "webpack --mode development --watch"
   },
   "dependencies": {
-    "alpinejs": "^2.3.3",
+    "alpinejs": "^2.3.5",
     "nprogress": "^0.2.0",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
     "phoenix_live_view": "file:../deps/phoenix_live_view"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
     "@fullhuman/postcss-purgecss": "^2.1.2",
     "babel-loader": "^8.0.0",
     "copy-webpack-plugin": "^5.1.1",
@@ -26,9 +26,9 @@
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^8.0.2",
-    "tailwindcss": "^1.4.4",
+    "tailwindcss": "^1.4.6",
     "tailwindcss-spinner": "^1.0.0",
-    "terser-webpack-plugin": "^2.3.2",
+    "terser-webpack-plugin": "^2.3.7",
     "webpack": "4.41.5",
     "webpack-cli": "^3.3.2"
   }

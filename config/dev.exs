@@ -65,3 +65,5 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :movie, tmdb_api_key: System.get_env("TMDB_API_KEY")

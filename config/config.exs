@@ -7,6 +7,8 @@
 # General application configuration
 use Mix.Config
 
+config :movie, tmdb_api_key: "${TMDB_API_KEY}"
+
 # Configures the endpoint
 config :movie, MovieWeb.Endpoint,
   url: [host: "localhost"],

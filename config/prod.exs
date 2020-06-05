@@ -10,7 +10,15 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :movie, MovieWeb.Endpoint,
-  url: [host: "example.com", port: 80],
+  load_from_system_env: true,
+  # http: [port: {:system, System.get_env("PORT")}],
+  http: [port: {:system, "PORT"}],
+  server: true,
+  secret_key_base: "${SECRET_KEY_BASE}",
+  url: [host: "${APP_NAME}.gigalixir.com", port: 443],
+  version: Mix.Project.config()[:version],
+  # secret_key_base: System.get_env("SECRET_KEY_BASE"),
+  # url: [host: "#{System.get_env("APP_NAME")}.gigalixir.com", port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production

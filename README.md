@@ -5,7 +5,7 @@
 This app requires [themoviedb API](https://themoviedb.org/documentation/api).
 Get your API Key & export it as TMDB_API_KEY environment variable.
 ```bash
-export TBDB_API_KEY=your_api_key
+export TMDB_API_KEY=your_api_key
 ```
 
 To start your Phoenix server:

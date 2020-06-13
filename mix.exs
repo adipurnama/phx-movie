@@ -34,7 +34,7 @@ defmodule Movie.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.5.1"},
-      {:phoenix_live_view, "~> 0.12.0"},
+      {:phoenix_live_view, "~> 0.13.1"},
       {:floki, ">= 0.0.0", only: :test},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
@@ -43,10 +43,11 @@ defmodule Movie.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
       {:mojito, "~> 0.6.4"},
+      {:logster, "~> 1.0"},
       {:jason, "~> 1.0"},
       {:datex, "~> 1.0.0"},
       {:con_cache, "~> 0.13"},
-      {:plug_cowboy, "~> 2.0"},
+      {:plug_cowboy, "~> 2.3.0"},
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false}
     ]
   end

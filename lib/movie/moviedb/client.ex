@@ -11,7 +11,7 @@ defmodule Movie.MovieDB.Client do
   ]
 
   def get(path, params \\ []) do
-    case Mojito.request(method: :get, url: uri_string(path, params), headers: @default_headers) do
+    case Finch.request(TMDBFinchClient, :get, uri_string(path, params), @default_headers) do
       {:ok, resp} ->
         {:ok, resp.body |> Jason.decode!(keys: :atoms)}
 
@@ -21,13 +21,11 @@ defmodule Movie.MovieDB.Client do
   end
 
   def get!(path, params \\ []) do
-    {:ok, resp} = Mojito.get(uri_string(path, params), @default_headers)
+    {:ok, resp} = Finch.request(TMDBFinchClient, :get, uri_string(path, params), @default_headers)
     resp.body |> Jason.decode!(keys: :atoms)
   end
 
   defp uri_string(path, params) do
-    Logger.info("API_KEY=#{@api_key}")
-
     "#{@base_url}#{path}"
     |> URI.parse()
     |> Map.put(:query, URI.encode_query([api_key: @api_key] ++ params))

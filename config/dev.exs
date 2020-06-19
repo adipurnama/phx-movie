@@ -1,5 +1,7 @@
 use Mix.Config
 
+config :movie, tmdb_api_key: System.get_env("TMDB_API_KEY")
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #

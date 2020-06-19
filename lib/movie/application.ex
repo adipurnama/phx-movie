@@ -7,6 +7,14 @@ defmodule Movie.Application do
 
   def start(_type, _args) do
     children = [
+      {
+        Finch,
+        name: TMDBFinchClient,
+        pools: %{
+          :default => [size: 11],
+          "https://api.themoviedb.org" => [size: 20, count: 2]
+        }
+      },
       {ConCache,
        [
          ttl_check_interval: :timer.seconds(15),

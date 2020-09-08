@@ -39,6 +39,7 @@ defmodule MovieWeb.ActorView do
     credits.cast
     |> Enum.filter(&(&1.media_type != "tv"))
     |> Enum.sort(&(&1.vote_average > &2.vote_average))
+    |> Enum.filter(&(&1.poster_path != nil))
     |> Enum.take(5)
     |> Enum.map(fn show ->
       case show do

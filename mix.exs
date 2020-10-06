@@ -49,7 +49,8 @@ defmodule Movie.MixProject do
       {:datex, "~> 1.0.0"},
       {:con_cache, "~> 0.13"},
       {:plug_cowboy, "~> 2.3.0"},
-      {:credo, "~> 1.4", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:ex_check, "~> 0.12.0", only: [:dev, :test], runtime: false}
     ]
   end
 

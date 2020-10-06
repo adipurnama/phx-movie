@@ -5,7 +5,6 @@ defmodule Movie.MovieDB.Client do
   require Logger
 
   @base_url "https://api.themoviedb.org/3"
-  @api_key Application.get_env(:movie, :tmdb_api_key)
   @default_headers [
     {"content-type", "application/json"}
   ]
@@ -28,7 +27,11 @@ defmodule Movie.MovieDB.Client do
   defp uri_string(path, params) do
     "#{@base_url}#{path}"
     |> URI.parse()
-    |> Map.put(:query, URI.encode_query([api_key: @api_key] ++ params))
+    |> Map.put(:query, URI.encode_query([api_key: api_key()] ++ params))
     |> URI.to_string()
+  end
+
+  defp api_key() do
+    Application.get_env(:movie, :tmdb_api_key)
   end
 end

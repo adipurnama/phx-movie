@@ -16,5 +16,9 @@ module.exports = {
   variants: {
     textColor: ['active', 'hover', 'focus-within']
   },
+  future: {
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true,
+  },
   plugins: [require('tailwindcss-spinner')()],
 }

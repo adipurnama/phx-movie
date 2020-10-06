@@ -1,4 +1,5 @@
 defmodule MovieWeb.PageLive do
+  @moduledoc false
   use MovieWeb, :live_view
 
   @impl true

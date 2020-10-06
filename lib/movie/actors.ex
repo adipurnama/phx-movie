@@ -1,5 +1,5 @@
 defmodule Movie.Actors do
-  # alias Movie.Actors.Actor
+  @moduledoc false
   alias Movie.MovieDB.Client
 
   @doc """

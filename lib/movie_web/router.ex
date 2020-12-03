@@ -14,6 +14,14 @@ defmodule MovieWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :admin_only do
+    import Plug.BasicAuth
+
+    plug :basic_auth,
+      username: System.get_env("PHX_DASH_USER"),
+      password: System.get_env("PHX_DASH_PASS")
+  end
+
   scope "/", MovieWeb do
     pipe_through :browser
 
@@ -45,6 +53,14 @@ defmodule MovieWeb.Router do
 
     scope "/" do
       pipe_through :browser
+      live_dashboard "/dashboard", metrics: MovieWeb.Telemetry
+    end
+  else
+    import Phoenix.LiveDashboard.Router
+
+    scope "/" do
+      pipe_through [:browser, :admin_only]
+
       live_dashboard "/dashboard", metrics: MovieWeb.Telemetry
     end
   end

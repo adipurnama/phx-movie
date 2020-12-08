@@ -13,7 +13,11 @@ The live version can be seen [here](http://phx-movie.gigalixirapp.com)
 This app requires [themoviedb API](https://themoviedb.org/documentation/api).
 Get your API Key & export it as TMDB_API_KEY environment variable.
 ```bash
-export TMDB_API_KEY=your_api_key
+export TMDB_CLIENT_API_KEY=your_api_key
+export SESSION_ENCRYPTION_SALT=$(mix phx.gen.secret 64)
+export SECRET_KEY_BASE=$(mix phx.gen.secret 64)
+export ADMIN_USER=live_dashbaord_basic_auth_user
+export ADMIN_PASSWORD=live_dashbaord_basic_auth_password
 ```
 
 To start your Phoenix server:

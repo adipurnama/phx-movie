@@ -1,6 +1,6 @@
 defmodule Movie.Actors do
   @moduledoc false
-  alias Movie.MovieDB.Client
+  alias Movie.TMDB.Client
 
   @doc """
   Returns the list of actors.

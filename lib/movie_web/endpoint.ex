@@ -52,4 +52,23 @@ defmodule MovieWeb.Endpoint do
   plug Plug.Head
   plug Plug.Session, @session_options
   plug MovieWeb.Router
+
+  def init(_type, config) do
+    %{web: runtime_overrides} = Vapor.load!(Movie.Config)
+
+    config =
+      Keyword.merge(config,
+        secret_key_base: runtime_overrides.secret_key_base,
+        admin_user: runtime_overrides.admin_user,
+        admin_password: runtime_overrides.admin_password
+      )
+
+    case runtime_overrides.port do
+      nil ->
+        {:ok, config}
+
+      port ->
+        {:ok, Keyword.put(config, :http, port: port, transport_options: [socket_opts: [:inet6]])}
+    end
+  end
 end

@@ -6,15 +6,14 @@ defmodule Movie.Application do
   use Application
 
   def start(_type, _args) do
+    config = Vapor.load!(Movie.Config)
+
+    %{tmdb_client_api_key: api_key} = config.tmdb
+
+    Application.put_env(:movie, :tmdb_api_key, api_key)
+
     children = [
-      {
-        Finch,
-        name: TMDBFinchClient,
-        pools: %{
-          :default => [size: 11],
-          "https://api.themoviedb.org" => [size: 20, count: 2]
-        }
-      },
+      Movie.TMDB.Client.child_spec(),
       {ConCache,
        [
          ttl_check_interval: :timer.seconds(15),

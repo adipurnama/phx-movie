@@ -1,4 +1,4 @@
-defmodule Movie.MovieDB.Client do
+defmodule Movie.TMDB.Client do
   @moduledoc """
   HTTP API Client to interact with tmdb API
   """
@@ -9,8 +9,22 @@ defmodule Movie.MovieDB.Client do
     {"content-type", "application/json"}
   ]
 
+  @pool_size 20
+  @count_per_pool 2
+
+  def child_spec do
+    {
+      Finch,
+      name: __MODULE__,
+      pools: %{
+        :default => [size: 11],
+        "https://api.themoviedb.org" => [size: @pool_size, count: @count_per_pool]
+      }
+    }
+  end
+
   def get(path, params \\ []) do
-    case Finch.request(TMDBFinchClient, :get, uri_string(path, params), @default_headers) do
+    case Finch.request(__MODULE__, :get, uri_string(path, params), @default_headers) do
       {:ok, resp} ->
         {:ok, resp.body |> Jason.decode!(keys: :atoms)}
 
@@ -20,7 +34,7 @@ defmodule Movie.MovieDB.Client do
   end
 
   def get!(path, params \\ []) do
-    {:ok, resp} = Finch.request(TMDBFinchClient, :get, uri_string(path, params), @default_headers)
+    {:ok, resp} = Finch.request(__MODULE__, :get, uri_string(path, params), @default_headers)
     resp.body |> Jason.decode!(keys: :atoms)
   end
 

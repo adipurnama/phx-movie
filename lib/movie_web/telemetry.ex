@@ -29,6 +29,38 @@ defmodule MovieWeb.Telemetry do
         unit: {:native, :millisecond}
       ),
 
+      # Finch metrics
+      summary("finch.connect.stop.duration",
+        unit: {:native, :millisecond},
+        tag: [:shp],
+        tag_values: &shp/1
+      ),
+      summary("finch.queue.exception.duration",
+        unit: {:native, :millisecond},
+        tag: [:shp],
+        tag_values: &shp/1
+      ),
+      summary("finch.queue.stop.idle_time",
+        unit: {:native, :millisecond},
+        tag: [:shp],
+        tag_values: &shp/1
+      ),
+      summary("finch.queue.stop.duration",
+        unit: {:native, :millisecond},
+        tag: [:shp],
+        tag_values: &shp/1
+      ),
+      summary("finch.request.stop.duration",
+        unit: {:native, :millisecond},
+        tag: [:shp],
+        tag_values: &shp/1
+      ),
+      summary("finch.response.stop.duration",
+        unit: {:native, :millisecond},
+        tag: [:shp],
+        tag_values: &shp/1
+      ),
+
       # VM Metrics
       summary("vm.memory.total", unit: {:byte, :kilobyte}),
       summary("vm.total_run_queue_lengths.total"),
@@ -36,6 +68,8 @@ defmodule MovieWeb.Telemetry do
       summary("vm.total_run_queue_lengths.io")
     ]
   end
+
+  defp shp(%{scheme: scheme, host: host, port: port}), do: "#{scheme}://#{host}:#{port}"
 
   defp periodic_measurements do
     [

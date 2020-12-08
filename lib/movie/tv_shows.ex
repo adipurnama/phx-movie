@@ -2,7 +2,7 @@ defmodule Movie.TVShows do
   @moduledoc """
   The TVShows context.
   """
-  alias Movie.MovieDB.Client
+  alias Movie.TMDB.Client
 
   @doc """
   Returns the list of tv_shows.

@@ -1,5 +1,5 @@
 defmodule Movie do
-  alias Movie.MovieDB.Client
+  alias Movie.TMDB.Client
 
   @moduledoc """
   Movie keeps the contexts that define your domain

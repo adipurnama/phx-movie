@@ -1,8 +1,9 @@
 <div
-  id="<%= if Phoenix.LiveView.connected?(@socket), do: "searchbox-connected", else: "searchbox-not-connected" %>-<%= @search_query %>"
+  id="searchbox"
   class="relative w-full max-w-xs mt-3 text-gray-600 focus-within:text-blue-500 md:mt-0"
   x-data="{ isOpen: true }"
-  @click.away="isOpen = false"
+  x-on:click="isOpen = true"
+  x-on:click.away="isOpen = false"
   >
   <!-- Search Box -->
   <span class="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -19,9 +20,8 @@
       phx-debounce="500"
       autocomplete="off"
       placeholder="Search movie title"
-      <%# @focus="isOpen = true" %>
-      <%# @keydown.escape.window="isOpen = false" %>
       value="<%= @search_query %>"
+      x-on:keydown.escape="isOpen = false"
     >
   </form>
   <%= if @loading do %>
@@ -31,7 +31,7 @@
   <!-- Search Result -->
   <div
     class="absolute z-50 w-64 mt-4 text-sm bg-gray-800 rounded"
-    x-show="isOpen"
+    x-show.transition="isOpen"
     >
   <%= unless String.trim(@search_query) == "" do %>
     <%= cond do %>

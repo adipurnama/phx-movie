@@ -2,14 +2,14 @@
   <div class="popular-movies">
     <h2 class="text-lg font-semibold tracking-wider text-orange-500 uppercase">Popular Movies</h2>
     <div class="grid grid-cols-1 sm: grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-      <%= render_many popular_movies(), MovieWeb.MovieView, "card.html", as: :movie, conn: @conn %>
+      <%= render_many popular_movies(), MovieWeb.MovieView, "_card.html", as: :movie, conn: @conn %>
     </div>
   </div>
 
   <div class="now-playing-movies">
     <h2 class="text-lg font-semibold tracking-wider text-orange-500 uppercase">Now Playing</h2>
     <div class="grid grid-cols-1 sm: grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-      <%= render_many now_playing(), MovieWeb.MovieView, "card.html", as: :movie, conn: @conn %>
+      <%= render_many now_playing(), MovieWeb.MovieView, "_card.html", as: :movie, conn: @conn %>
     </div>
   </div>
 </div>

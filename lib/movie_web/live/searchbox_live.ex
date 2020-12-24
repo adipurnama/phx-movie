@@ -12,7 +12,7 @@ defmodule MovieWeb.SearchBoxLive do
 
   @impl true
   def render(assigns) do
-    MovieWeb.MovieView.render("searchbox.html", assigns)
+    MovieWeb.MovieView.render("_searchbox.html", assigns)
   end
 
   @impl true

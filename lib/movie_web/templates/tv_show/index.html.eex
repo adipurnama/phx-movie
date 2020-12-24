@@ -2,14 +2,14 @@
   <div class="popular-tv-shows">
     <h2 class="text-lg font-semibold tracking-wider text-orange-500 uppercase">Popular TV Shows</h2>
     <div class="grid grid-cols-1 sm: grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-      <%= render_many @popular, MovieWeb.TVShowView, "card.html", as: :tv_show, conn: @conn %>
+      <%= render_many @popular, MovieWeb.TVShowView, "_card.html", as: :tv_show, conn: @conn %>
     </div>
   </div>
 
   <div class="now-playing-tv-shows">
     <h2 class="text-lg font-semibold tracking-wider text-orange-500 uppercase">Top Rated Shows</h2>
     <div class="grid grid-cols-1 sm: grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-      <%= render_many @top_rated, MovieWeb.TVShowView, "card.html", as: :tv_show, conn: @conn %>
+      <%= render_many @top_rated, MovieWeb.TVShowView, "_card.html", as: :tv_show, conn: @conn %>
     </div>
   </div>
 </div>

@@ -7,7 +7,7 @@ defmodule Movie.MixProject do
       version: "0.1.0",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      compilers: [:boundary, :phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
@@ -33,6 +33,7 @@ defmodule Movie.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:boundary, "~> 0.8.0", runtime: false},
       {:phoenix, "~> 1.5.1"},
       {:phoenix_live_view, "~> 0.15.4"},
       {:floki, ">= 0.0.0", only: :test},

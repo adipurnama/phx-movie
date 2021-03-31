@@ -3,6 +3,8 @@ defmodule Movie.Application do
   # for more information on OTP Applications
   @moduledoc false
 
+  use Boundary, deps: [Movie, MovieWeb], top_level?: true
+
   use Application
 
   def start(_type, _args) do
@@ -13,7 +15,7 @@ defmodule Movie.Application do
     Application.put_env(:movie, :tmdb_api_key, api_key)
 
     children = [
-      Movie.TMDB.Client.child_spec(),
+      Movie.tmdb_client_child_spec(),
       {ConCache,
        [
          ttl_check_interval: :timer.seconds(15),

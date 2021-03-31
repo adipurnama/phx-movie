@@ -17,6 +17,8 @@ defmodule MovieWeb do
   and import those modules here.
   """
 
+  use Boundary, deps: [Movie], exports: [Endpoint]
+
   def controller do
     quote do
       use Phoenix.Controller, namespace: MovieWeb

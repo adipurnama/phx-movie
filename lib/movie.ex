@@ -8,6 +8,11 @@ defmodule Movie do
   Contexts are also responsible for managing your data, regardless
   if it comes from the database, an external API or others.
   """
+
+  use Boundary, deps: [], exports: [Actors, TVShows]
+
+  defdelegate tmdb_client_child_spec, to: Client, as: :child_spec
+
   def popular_movies() do
     resp = Client.get!("/movie/popular")
     resp.results

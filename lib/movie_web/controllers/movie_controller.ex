@@ -6,6 +6,7 @@ defmodule MovieWeb.MovieController do
 
     conn
     |> assign(:movie, movie)
+    |> assign(:page_title, "#{movie.title} - PhxMovie")
     |> render("show.html")
   end
 end

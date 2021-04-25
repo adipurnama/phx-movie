@@ -18,8 +18,8 @@ defmodule MovieWeb.Router do
     import Plug.BasicAuth
 
     plug :basic_auth,
-      username: System.get_env("PHX_DASH_USER"),
-      password: System.get_env("PHX_DASH_PASS")
+      username: System.get_env("ADMIN_USER"),
+      password: System.get_env("ADMIN_PASSWORD")
   end
 
   scope "/", MovieWeb do

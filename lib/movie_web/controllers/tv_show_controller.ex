@@ -11,6 +11,10 @@ defmodule MovieWeb.TVShowController do
 
   def show(conn, %{"id" => id}) do
     tv_show = TVShows.get_tv_show!(id)
-    render(conn, "show.html", tv_show: tv_show)
+
+    conn
+    |> assign(:page_title, "#{tv_show.title} - PhxMovie")
+    |> assign(:tv_show, tv_show)
+    |> render("show.html")
   end
 end

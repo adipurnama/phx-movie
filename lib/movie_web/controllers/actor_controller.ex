@@ -22,6 +22,7 @@ defmodule MovieWeb.ActorController do
     credits = Actors.get_actor_combined_credits!(id)
 
     conn
+    |> assign(:page_title, "#{actor.name} - PhxMovie")
     |> assign(:actor, actor)
     |> assign(:social, social_media)
     |> assign(:credits, credits)

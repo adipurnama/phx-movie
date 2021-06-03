@@ -43,7 +43,6 @@ defmodule Movie.MixProject do
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
-      # {:mojito, "~> 0.6.4"},
       {:finch, "~> 0.2.0"},
       {:logster, "~> 1.0"},
       {:jason, "~> 1.0"},

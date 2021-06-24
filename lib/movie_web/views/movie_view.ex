@@ -1,6 +1,7 @@
 defmodule MovieWeb.MovieView do
   use MovieWeb, :view
 
+  def formatted_date(nil), do: "N/A"
   def formatted_date(""), do: "N/A"
 
   def formatted_date(date) do
